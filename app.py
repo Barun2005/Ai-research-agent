@@ -138,7 +138,14 @@ if "template_query" not in st.session_state:
     st.session_state.template_query = ""
 
 with st.sidebar:
-    api_key = None
+    st.markdown("### 🔑 API Configuration")
+    api_key_input = st.text_input("Gemini API Key", type="password", placeholder="AIza...")
+    if api_key_input:
+        api_key = api_key_input
+        st.success("Using your custom API key!")
+    else:
+        api_key = None
+        st.info("💡 Using system default key from .env")
     
     st.markdown("---")
     st.markdown("### 🔌 Developer API")
